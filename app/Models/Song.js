@@ -8,10 +8,11 @@ export default class Song {
     this.price = data.trackPrice || data.price;
     this.preview = data.previewUrl || data.preview;
     this.id = data.trackId || data.id;
-    this.user = data.user
+    this.user = data.user || ''
   }
 
   get Template() {
+    debugger
     return /*html*/ `
     <div class="card shadow">
         <img class="card-img-top" src="${this.albumArt}" alt="Card image cap">
@@ -21,7 +22,9 @@ export default class Song {
           <audio controls src="${this.preview}"> </audio>
           <div>
             <a href="#" class="btn btn-primary" onclick="app.songsController.addSong(${this.id})">Add Song</a>
-            <a href="#" class="btn btn-primary" onclick="app.songsController.removeSong('${this.id}')">Remove Song</a>
+
+            ${this.user ? `<a href="#" class="btn btn-primary" onclick="app.songsController.removeSong('${this.id}')">Remove Song</a>` : ''}
+
           </div>
     </div>
   </div>
