@@ -42,6 +42,17 @@
   box-sizing: border-box;
 }
 
+
+.cursor{
+  cursor: pointer;
+}
+
+.locked-scroll {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
