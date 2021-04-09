@@ -49,6 +49,7 @@ class SongsService {
 
  async addSong(id) {
     //TODO you only have an id, you will need to find it in the store before you can post it
+    // if the song is already inside the playlist, return. avoid 'double add'
     if(ProxyState.playlist.find(s => s.title ==ProxyState.currentSong.title))return;
     // ProxyState.currentSong._id = null
     let res = await sandBoxApi.post('', ProxyState.currentSong)
@@ -67,8 +68,6 @@ class SongsService {
    */
  async removeSong(id) {
     //TODO Send the id to be deleted from the server then update the store
-    console.log(ProxyState.currentSong);
-    console.log(id);
   await sandBoxApi.delete(ProxyState.currentSong.id)
   ProxyState.playlist = ProxyState.playlist.filter(p => p.id != ProxyState.currentSong.id)
   ProxyState.currentSong = null
